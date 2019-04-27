@@ -1,0 +1,36 @@
+{
+  "name": "edist-core",
+  "version": "0.1.0",
+  "license": "UNLICENSED",
+  "main": "lib/index.js",
+  "private": true,
+  "devDependencies": {
+    "@babel/cli": "7.2.3",
+    "@babel/core": "7.2.2",
+    "@babel/plugin-proposal-class-properties": "7.3.0",
+    "@babel/plugin-proposal-object-rest-spread": "7.3.1",
+    "@babel/plugin-syntax-async-generators": "7.2.0",
+    "@babel/plugin-transform-async-to-generator": "7.2.0",
+    "@babel/plugin-transform-runtime": "7.2.0",
+    "@babel/preset-env": "7.3.1",
+    "@babel/preset-typescript": "7.3.3",
+    "@babel/runtime": "7.3.1",
+    "babel-plugin-redux-saga": "1.0.0",
+    "fetch-mock": "7.3.0",
+    "rimraf": "2.6.3"
+  },
+  "scripts": {
+    "start": "babel src --delete-dir-on-start --out-dir lib --extensions \".ts,.js,.tsx\" --copy-files  --watch",
+    "build": "babel src --delete-dir-on-start --out-dir lib --extensions \".ts,.js,.tsx\" --copy-files",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
+    "clean": "rimraf ./node_modules ./lib"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "immutable": "3.8.2",
+    "isomorphic-fetch": "2.2.1",
+    "redux-saga": "1.0.0",
+    "reselect": "4.0.0"
+  }
+}

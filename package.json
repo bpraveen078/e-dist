@@ -1,0 +1,25 @@
+{
+  "name": "e-dist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": "cccc",
+  "author": "Praveen",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "lerna run start --stream --parallel",
+    "build": "lerna run build",
+    "build:production": "REACT_APP_DATA_ENV=production lerna run build",
+    "bootstrap": "lerna bootstrap",
+    "test": "npm run build && lerna run test --ci",
+    "clean": "lerna run clean",
+    "storybook": "lerna run storybook"
+  },
+  "devDependencies": {
+    "inquirer": "^6.2.2",
+    "lerna": "^3.10.7",
+    "ora": "^3.1.0",
+    "shelljs": "^0.8.3"
+  }
+}
