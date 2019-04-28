@@ -1,5 +1,5 @@
 import * as React from "react";
-//@ts-ignore
+
 import { TextField } from "@material-ui/core";
 
 export interface ITextInputProps {

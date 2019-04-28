@@ -1,5 +1,5 @@
 import { withStyles } from "@material-ui/core";
-import React, { ComponentType } from "react";
+import * as React from "react";
 import { IThemeModel } from "../theme/theme";
 import { IPropsContextModel, PropsContext } from "./propsContext";
 
@@ -10,7 +10,7 @@ const styles = (theme: IThemeModel) => ({
     color: theme.palette.common.lightBlack,
     display: "flex",
     flexDirection: "row",
-    height: theme.typography.pxToRem(70),
+    height: "",
     justifyContent: "center"
   }
 });

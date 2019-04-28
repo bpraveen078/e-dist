@@ -1,8 +1,13 @@
 import * as React from "react";
-import "./App.css";
 
-export interface ILoginPageProps {}
-export interface ILoginPageState {}
+export interface ILoginPageProps {
+  error: string;
+  loaded: boolean;
+  loading: boolean;
+}
+export interface ILoginPageState {
+  isLoading: boolean;
+}
 class Login extends React.Component<ILoginPageProps, ILoginPageState> {
   public render() {
     return (

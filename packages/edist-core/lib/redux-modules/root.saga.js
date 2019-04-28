@@ -1,2 +1,2 @@
-import watchAppLogin from "./userinfo";
+import watchAppLogin from "./userinfo/sagas";
 export default [...watchAppLogin];

@@ -4,7 +4,7 @@ import {
   MuiThemeProvider,
   Theme as MuiTheme
 } from "@material-ui/core/styles";
-import { Palette, dark } from "@material-ui/core/styles/createPalette";
+import { Palette } from "@material-ui/core/styles/createPalette";
 
 export interface IColorModel extends CommonColors {
   green: string;
@@ -25,8 +25,7 @@ const colors = {
   red: "red"
 };
 
-const globalFontMamily = "";
-//@ts-ignore
+// @ts-ignore
 const theme = createMuiTheme({
   palette: {
     background: {

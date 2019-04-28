@@ -1,0 +1,10 @@
+0 silly argv { _: [ 'run' ],
+0 silly argv   stream: true,
+0 silly argv   parallel: true,
+0 silly argv   lernaVersion: '3.13.4',
+0 silly argv   '$0': 'node_modules\\lerna\\cli.js',
+0 silly argv   script: 'start' }
+1 notice cli v3.13.4
+2 verbose rootPath E:\Techraq\supplier-pp\e-dist\e-dist
+3 info versioning independent
+4 error
