@@ -1,11 +1,10 @@
 import * as React from "react";
 import Button from "@material-ui/core/Button";
 import TextInput from "src/elements/text-input";
+import { withProps } from "src/props/withProps";
 
 export interface ILoginPageProps {
-  error: string;
-  loaded: boolean;
-  loading: boolean;
+  loginSubmit(e: any): void;
 }
 export interface ILoginPageState {
   isLoading: boolean;
@@ -14,6 +13,8 @@ export interface ILoginPageState {
     password: string;
   };
 }
+// @ts-ignore
+@withProps("LoginProps")
 class Login extends React.Component<ILoginPageProps, ILoginPageState> {
   constructor(props: any) {
     super(props);
@@ -24,6 +25,7 @@ class Login extends React.Component<ILoginPageProps, ILoginPageState> {
         password: ""
       }
     };
+    debugger;
   }
   public handleSubmit = (e: any) => {
     console.log(e);
@@ -40,6 +42,7 @@ class Login extends React.Component<ILoginPageProps, ILoginPageState> {
     });
   };
   public render() {
+    debugger;
     const { userName, password } = this.state.login;
     return (
       <div style={{ marginTop: "155px" }}>

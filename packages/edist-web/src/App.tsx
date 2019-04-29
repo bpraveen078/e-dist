@@ -215,6 +215,7 @@ class App extends React.Component<IAppProps, IAppState> {
                 )} */}
                 {/* <PrivateRoute path="/" component={Login} /> */}
                 <Route exact={true} path="/" component={Login} />
+                <Route exact={true} path="/login" component={Login} />
               </div>
             </div>
           </Router>

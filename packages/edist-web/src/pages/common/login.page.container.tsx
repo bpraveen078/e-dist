@@ -11,19 +11,15 @@ export interface ILoginPageContainerProps {
 }
 
 const mapStateToProps = (state: any) => {
+  debugger;
   const loading = state.benefitsInfo.get("loading");
   const loaded = state.benefitsInfo.get("loaded");
   const error = state.benefitsInfo.get("error");
 
-  const props: ILoginPageProps = {
-    error,
-    loaded,
-    loading
-  };
-  return props;
+  return { loading };
 };
 const mapDispatchToProps = (dispatch: any) => ({
-  fetchOrgChart: () => dispatch({ type: "" })
+  loginSubmit: () => dispatch({ type: "" })
 });
 // @ts-ignore
 @withRouter
@@ -38,20 +34,11 @@ export class LoginPageAppContainer extends React.Component<
   public static defaultProps = {};
   constructor(props: any) {
     super(props);
+    debugger;
   }
 
-  public componentDidMount() {
-    const { dispatch } = this.props;
-    if (!dispatch) {
-      throw new Error("missing dispatch");
-    }
-
-    dispatch({
-      type: ""
-    });
-  }
   public render() {
-    const {} = this.props as ILoginPageProps;
+    debugger;
     return React.cloneElement(
       this.props.children as React.ReactElement<ILoginPageProps>,
       {}
