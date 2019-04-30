@@ -1,8 +1,9 @@
 import * as actions from "./actions";
-const initialState = {
+import Immutable from "immutable";
+const initialState = Immutable.fromJS({
   loading: false,
   data: {}
-};
+});
 
 const startLoading = (state, action) => {
   // return { ...state, loading: true };
@@ -19,6 +20,7 @@ const handlers = {
   [actions.LOGIN_SUCCESS]: loginResponse
 };
 export default ((state = initialState, action) => {
+  debugger;
   const handler = handlers[action.type];
   if (typeof handler === "undefined") return state;
   return handler(state, action);

@@ -12,6 +12,7 @@
     "ordered-imports": [false],
     "object-literal-sort-keys": [false],
     "no-console": [true, "warning"],
-    "no-debugger": false
+    "no-debugger": false,
+    "no-shadowed-variable": true
   }
 }

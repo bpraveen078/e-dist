@@ -16,6 +16,7 @@ function* appLogin(action) {
   }
 }
 function* appLoginWatcher() {
+  debugger;
   yield takeEvery(actions.LOGIN_REQUEST, appLogin);
 }
 function* watchAppLogin() {

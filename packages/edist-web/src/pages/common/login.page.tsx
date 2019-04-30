@@ -1,10 +1,13 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import TextInput from "src/elements/text-input";
-import { withProps } from "src/props/withProps";
+// import { withProps } from "src/props/withProps";
+import { mapDispatchToProps, mapStateToProps } from "./login.page.container";
 
 export interface ILoginPageProps {
-  loginSubmit(e: any): void;
+  load?: boolean;
+  loginSubmit(model: any): void;
 }
 export interface ILoginPageState {
   isLoading: boolean;
@@ -14,7 +17,12 @@ export interface ILoginPageState {
   };
 }
 // @ts-ignore
-@withProps("LoginProps")
+@connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
+// @ts-ignore
+// @withProps("ILoginPageProps")
 class Login extends React.Component<ILoginPageProps, ILoginPageState> {
   constructor(props: any) {
     super(props);
@@ -25,7 +33,6 @@ class Login extends React.Component<ILoginPageProps, ILoginPageState> {
         password: ""
       }
     };
-    debugger;
   }
   public handleSubmit = (e: any) => {
     console.log(e);
@@ -43,14 +50,15 @@ class Login extends React.Component<ILoginPageProps, ILoginPageState> {
   };
   public render() {
     debugger;
-    const { userName, password } = this.state.login;
+    const { login } = this.state;
+    const { loginSubmit } = this.props;
     return (
       <div style={{ marginTop: "155px" }}>
         Login
-        <form name="loginForm" onSubmit={this.handleSubmit}>
+        <form name="loginForm">
           <TextInput
             onChange={this.handleChange}
-            value={userName}
+            value={login.userName}
             required={true}
             minLength={4}
             label="User Name"
@@ -61,7 +69,7 @@ class Login extends React.Component<ILoginPageProps, ILoginPageState> {
           <br />
           <TextInput
             onChange={this.handleChange}
-            value={password}
+            value={login.password}
             required={true}
             minLength={4}
             label="Password"
@@ -70,7 +78,13 @@ class Login extends React.Component<ILoginPageProps, ILoginPageState> {
             maxLength={10}
           />
           <br />
-          <Button variant="contained" color="primary">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              loginSubmit(login);
+            }}
+          >
             Login
           </Button>
         </form>

@@ -1,6 +1,6 @@
-import * as React from "react";
+// import * as React from "react";
 
-export interface IPropsContextModel {
-  LoginProps: React.ComponentType<any>;
-}
-export const PropsContext = React.createContext({});
+// export interface IPropsContextModel {
+//   ILoginPageProps: React.ComponentType<any>;
+// }
+// export const PropsContext = React.createContext({});

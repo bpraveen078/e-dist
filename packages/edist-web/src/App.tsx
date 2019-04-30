@@ -1,7 +1,7 @@
 import * as React from "react";
 import { CSVLink } from "react-csv";
-import { makeAppContext } from "../src/props/makeAppContext";
-import { PropsContext } from "../src/props/propsContext";
+// import { makeAppContext } from "../src/props/makeAppContext";
+// import { PropsContext } from "../src/props/propsContext";
 import "./App.css";
 // import { PrivateRoute } from "./common/private-route";
 import logo from "./logo.svg";
@@ -132,94 +132,94 @@ class App extends React.Component<IAppProps, IAppState> {
     ];
     return (
       <div className="App">
-        <PropsContext.Provider value={makeAppContext}>
-          <Router history={history}>
-            <div>
-              <AppBar
-                position="fixed"
-                className={classNames(classes.appBar, {
-                  [classes.appBarShift]: this.state.open
-                })}
-              >
-                <Toolbar disableGutters={!this.state.open}>
-                  <IconButton
-                    color="inherit"
-                    aria-label="Open drawer"
-                    onClick={this.handleDrawerOpen}
-                    className={classNames(classes.menuButton, {
-                      [classes.hide]: this.state.open
-                    })}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                  <Typography variant="h6" color="inherit" noWrap={true}>
-                    Mini variant drawer
-                  </Typography>
-                </Toolbar>
-              </AppBar>
-              <Drawer
-                variant="permanent"
-                className={classNames(classes.drawer, {
+        {/* <PropsContext.Provider value={makeAppContext}> */}
+        <Router history={history}>
+          <div>
+            <AppBar
+              position="fixed"
+              className={classNames(classes.appBar, {
+                [classes.appBarShift]: this.state.open
+              })}
+            >
+              <Toolbar disableGutters={!this.state.open}>
+                <IconButton
+                  color="inherit"
+                  aria-label="Open drawer"
+                  onClick={this.handleDrawerOpen}
+                  className={classNames(classes.menuButton, {
+                    [classes.hide]: this.state.open
+                  })}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" color="inherit" noWrap={true}>
+                  Mini variant drawer
+                </Typography>
+              </Toolbar>
+            </AppBar>
+            <Drawer
+              variant="permanent"
+              className={classNames(classes.drawer, {
+                [classes.drawerOpen]: this.state.open,
+                [classes.drawerClose]: !this.state.open
+              })}
+              classes={{
+                paper: classNames({
                   [classes.drawerOpen]: this.state.open,
                   [classes.drawerClose]: !this.state.open
-                })}
-                classes={{
-                  paper: classNames({
-                    [classes.drawerOpen]: this.state.open,
-                    [classes.drawerClose]: !this.state.open
-                  })
-                }}
-                open={this.state.open}
-              >
-                <div className={classes.toolbar}>
-                  <IconButton onClick={this.handleDrawerClose}>
-                    {theme.direction === "rtl" ? (
-                      <ChevronRightIcon />
-                    ) : (
-                      <ChevronLeftIcon />
-                    )}
-                  </IconButton>
-                </div>
-                <Divider />
-                <List>
-                  {["Inbox", "Starred", "Send email", "Drafts"].map(
-                    (text, index) => (
-                      <ListItem button={true} key={text}>
-                        <ListItemIcon>
-                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                      </ListItem>
-                    )
+                })
+              }}
+              open={this.state.open}
+            >
+              <div className={classes.toolbar}>
+                <IconButton onClick={this.handleDrawerClose}>
+                  {theme.direction === "rtl" ? (
+                    <ChevronRightIcon />
+                  ) : (
+                    <ChevronLeftIcon />
                   )}
-                </List>
-                <Divider />
-                <List>
-                  {["All mail", "Trash", "Spam"].map((text, index) => (
+                </IconButton>
+              </div>
+              <Divider />
+              <List>
+                {["Inbox", "Starred", "Send email", "Drafts"].map(
+                  (text, index) => (
                     <ListItem button={true} key={text}>
                       <ListItemIcon>
                         {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                       </ListItemIcon>
                       <ListItemText primary={text} />
                     </ListItem>
-                  ))}
-                </List>
-              </Drawer>
-              {/* <ButtonOne disable /> */}
-              {/* <TestComponent id={1} /> */}
-              <div>
-                {/* {loading == true && (
+                  )
+                )}
+              </List>
+              <Divider />
+              <List>
+                {["All mail", "Trash", "Spam"].map((text, index) => (
+                  <ListItem button={true} key={text}>
+                    <ListItemIcon>
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                ))}
+              </List>
+            </Drawer>
+            {/* <ButtonOne disable /> */}
+            {/* <TestComponent id={1} /> */}
+            <div>
+              {/* {loading == true && (
                   <div className="dv-loader">
                     <div className="loader" />
                   </div>
                 )} */}
-                {/* <PrivateRoute path="/" component={Login} /> */}
-                <Route exact={true} path="/" component={Login} />
-                <Route exact={true} path="/login" component={Login} />
-              </div>
+              {/* <PrivateRoute path="/" component={Login} /> */}
+              <Route exact={true} path="/" component={Login} />
+              <Route exact={true} path="/login" component={Login} />
             </div>
-          </Router>
-        </PropsContext.Provider>
+          </div>
+        </Router>
+        {/* </PropsContext.Provider> */}
       </div>
     );
   }
