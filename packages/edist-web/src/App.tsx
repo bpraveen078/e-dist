@@ -1,11 +1,13 @@
 import * as React from "react";
 import { CSVLink } from "react-csv";
+import { connect } from "react-redux";
 // import { makeAppContext } from "../src/props/makeAppContext";
 // import { PropsContext } from "../src/props/propsContext";
 import "./App.css";
 // import { PrivateRoute } from "./common/private-route";
 import logo from "./logo.svg";
 import Login from "./pages/common/login.page";
+import Dashboard from "./pages/common/dashboard.page";
 // @ts-ignore
 import { getStorage } from "edist-core/lib/helpers/storage.helper";
 import { Route, Router } from "react-router";
@@ -20,6 +22,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { IThemeModel } from "../src/theme/theme";
+import { mapDispatchToProps, mapStateToProps } from "./AppContainer";
 
 import classNames from "classnames";
 
@@ -101,10 +104,14 @@ const styles = (theme: IThemeModel) =>
   });
 
 export interface IAppProps {
-  open: boolean;
-  close: boolean;
+  isLoggedin: boolean;
+  isMenuOpen: boolean;
+  isMenuClose: boolean;
+  loading: boolean;
   classes: any;
   theme: any;
+  drawerOpen: (e: any) => void;
+  drawerClose: (e: any) => void;
 }
 
 export interface IAppState {
@@ -112,26 +119,28 @@ export interface IAppState {
   close: boolean;
 }
 
+// @ts-ignore
+@connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
 class App extends React.Component<IAppProps, IAppState> {
   constructor(props: any) {
     super(props);
-    this.state = { open: false, close: false };
+    // this.state = { open: false, close: false };
   }
   public handleDrawerOpen = () => {
-    this.setState({ open: true });
+    // this.setState({ open: true });
+    this.props.drawerOpen(true);
   };
 
   public handleDrawerClose = () => {
-    this.setState({ open: false });
+    // this.setState({ open: false });
+    this.props.drawerOpen(false);
   };
   public render() {
-    const { classes, theme } = this.props;
-    // const csvData = [
-    //   ["firstname", "lastname", "email"],
-    //   ["Ahmed", "Tomi", "ah@smthing.co.com"],
-    //   ["Raed", "Labes", "rl@smthing.co.com"],
-    //   ["Yezzi", "Min l3b", "ymin@cocococo.com"]
-    // ];
+    const { classes, theme, isLoggedin, isMenuOpen } = this.props;
+
     return (
       <div className="App">
         {/* <PropsContext.Provider value={makeAppContext}> */}
@@ -140,36 +149,36 @@ class App extends React.Component<IAppProps, IAppState> {
             <AppBar
               position="fixed"
               className={classNames(classes.appBar, {
-                [classes.appBarShift]: this.state.open
+                [classes.appBarShift]: isMenuOpen
               })}
             >
-              <Toolbar disableGutters={!this.state.open}>
+              <Toolbar disableGutters={!isMenuOpen}>
                 <IconButton
                   color="inherit"
                   aria-label="Open drawer"
                   onClick={this.handleDrawerOpen}
                   className={classNames(classes.menuButton, {
-                    [classes.hide]: this.state.open
+                    [classes.hide]: isMenuOpen
                   })}
                 >
                   <MenuIcon />
                 </IconButton>
               </Toolbar>
             </AppBar>
-            {getStorage("id_token") && (
+            {isLoggedin && (
               <Drawer
                 variant="permanent"
                 className={classNames(classes.drawer, {
-                  [classes.drawerOpen]: this.state.open,
-                  [classes.drawerClose]: !this.state.open
+                  [classes.drawerOpen]: isMenuOpen,
+                  [classes.drawerClose]: !isMenuOpen
                 })}
                 classes={{
                   paper: classNames({
-                    [classes.drawerOpen]: this.state.open,
-                    [classes.drawerClose]: !this.state.open
+                    [classes.drawerOpen]: isMenuOpen,
+                    [classes.drawerClose]: !isMenuOpen
                   })
                 }}
-                open={this.state.open}
+                open={isMenuOpen}
               >
                 <div className={classes.toolbar}>
                   <IconButton onClick={this.handleDrawerClose}>
@@ -207,8 +216,6 @@ class App extends React.Component<IAppProps, IAppState> {
               </Drawer>
             )}
 
-            {/* <ButtonOne disable /> */}
-            {/* <TestComponent id={1} /> */}
             <div>
               {/* {loading == true && (
                   <div className="dv-loader">
@@ -218,6 +225,7 @@ class App extends React.Component<IAppProps, IAppState> {
               {/* <PrivateRoute path="/" component={Login} /> */}
               <Route exact={true} path="/" component={Login} />
               <Route exact={true} path="/login" component={Login} />
+              <Route exact={true} path="/dashboard" component={Dashboard} />
             </div>
           </div>
         </Router>

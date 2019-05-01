@@ -13,7 +13,11 @@ const initialState = Immutable.fromJS({
 });
 
 const startLoading = (state, action) => {
-  return state.set("loading", true);
+  state.set("isLoggedin", false);
+  state.set("isMenuOpen", false);
+  state.set("isMenuClose", true);
+  state.set("loading", false);
+  return state;
 };
 
 const loginResponse = (state, action) => {
