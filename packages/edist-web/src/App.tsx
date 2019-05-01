@@ -7,6 +7,7 @@ import "./App.css";
 import logo from "./logo.svg";
 import Login from "./pages/common/login.page";
 // @ts-ignore
+import { getStorage } from "edist-core/lib/helpers/storage.helper";
 import { Route, Router } from "react-router";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -19,6 +20,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { IThemeModel } from "../src/theme/theme";
+
 import classNames from "classnames";
 
 import { createBrowserHistory } from "history";
@@ -113,7 +115,7 @@ export interface IAppState {
 class App extends React.Component<IAppProps, IAppState> {
   constructor(props: any) {
     super(props);
-    this.state = { open: true, close: false };
+    this.state = { open: false, close: false };
   }
   public handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -124,12 +126,12 @@ class App extends React.Component<IAppProps, IAppState> {
   };
   public render() {
     const { classes, theme } = this.props;
-    const csvData = [
-      ["firstname", "lastname", "email"],
-      ["Ahmed", "Tomi", "ah@smthing.co.com"],
-      ["Raed", "Labes", "rl@smthing.co.com"],
-      ["Yezzi", "Min l3b", "ymin@cocococo.com"]
-    ];
+    // const csvData = [
+    //   ["firstname", "lastname", "email"],
+    //   ["Ahmed", "Tomi", "ah@smthing.co.com"],
+    //   ["Raed", "Labes", "rl@smthing.co.com"],
+    //   ["Yezzi", "Min l3b", "ymin@cocococo.com"]
+    // ];
     return (
       <div className="App">
         {/* <PropsContext.Provider value={makeAppContext}> */}
@@ -152,59 +154,59 @@ class App extends React.Component<IAppProps, IAppState> {
                 >
                   <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" color="inherit" noWrap={true}>
-                  Mini variant drawer
-                </Typography>
               </Toolbar>
             </AppBar>
-            <Drawer
-              variant="permanent"
-              className={classNames(classes.drawer, {
-                [classes.drawerOpen]: this.state.open,
-                [classes.drawerClose]: !this.state.open
-              })}
-              classes={{
-                paper: classNames({
+            {getStorage("id_token") && (
+              <Drawer
+                variant="permanent"
+                className={classNames(classes.drawer, {
                   [classes.drawerOpen]: this.state.open,
                   [classes.drawerClose]: !this.state.open
-                })
-              }}
-              open={this.state.open}
-            >
-              <div className={classes.toolbar}>
-                <IconButton onClick={this.handleDrawerClose}>
-                  {theme.direction === "rtl" ? (
-                    <ChevronRightIcon />
-                  ) : (
-                    <ChevronLeftIcon />
+                })}
+                classes={{
+                  paper: classNames({
+                    [classes.drawerOpen]: this.state.open,
+                    [classes.drawerClose]: !this.state.open
+                  })
+                }}
+                open={this.state.open}
+              >
+                <div className={classes.toolbar}>
+                  <IconButton onClick={this.handleDrawerClose}>
+                    {theme.direction === "rtl" ? (
+                      <ChevronRightIcon />
+                    ) : (
+                      <ChevronLeftIcon />
+                    )}
+                  </IconButton>
+                </div>
+                <Divider />
+                <List>
+                  {["Inbox", "Starred", "Send email", "Drafts"].map(
+                    (text, index) => (
+                      <ListItem button={true} key={text}>
+                        <ListItemIcon>
+                          {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                        </ListItemIcon>
+                        <ListItemText primary={text} />
+                      </ListItem>
+                    )
                   )}
-                </IconButton>
-              </div>
-              <Divider />
-              <List>
-                {["Inbox", "Starred", "Send email", "Drafts"].map(
-                  (text, index) => (
+                </List>
+                <Divider />
+                <List>
+                  {["All mail", "Trash", "Spam"].map((text, index) => (
                     <ListItem button={true} key={text}>
                       <ListItemIcon>
                         {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                       </ListItemIcon>
                       <ListItemText primary={text} />
                     </ListItem>
-                  )
-                )}
-              </List>
-              <Divider />
-              <List>
-                {["All mail", "Trash", "Spam"].map((text, index) => (
-                  <ListItem button={true} key={text}>
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                ))}
-              </List>
-            </Drawer>
+                  ))}
+                </List>
+              </Drawer>
+            )}
+
             {/* <ButtonOne disable /> */}
             {/* <TestComponent id={1} /> */}
             <div>

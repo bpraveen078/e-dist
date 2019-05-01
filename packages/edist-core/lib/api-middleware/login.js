@@ -1,17 +1,23 @@
 import { BASE_URL } from "../environment";
+import axios from "axios";
+import { setStorage } from "../helpers/storage.helper";
 
 const login = async (model, url) => {
-  let data = {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(model)
+  // const data =
+  //   "username=" +
+  //   model.userName +
+  //   "&password=" +
+  //   model.password +
+  //   "&clientid=Website&grant_type=password";
+  const data = {
+    userName: model.userName,
+    password: model.password // clientid: "Website",
+    // grant_type: "password"
+
   };
-  debugger;
-  const response = await fetch(`${BASE_URL}${url}`, data);
-  debugger;
+  axios.defaults.baseURL = BASE_URL;
+  axios.defaults.headers.post["Content-Type"] = "application/json";
+  const response = await axios.post(url, data);
 
   if (!response.ok) {
     return {
@@ -21,7 +27,8 @@ const login = async (model, url) => {
     };
   }
 
-  const json = await response.json();
+  debugger;
+  setStorage("id_token", response.data.id_token);
   return {
     data: json
   };

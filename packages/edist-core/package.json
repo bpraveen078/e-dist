@@ -31,6 +31,7 @@
     "immutable": "3.8.2",
     "isomorphic-fetch": "2.2.1",
     "redux-saga": "1.0.2",
-    "reselect": "4.0.0"
+    "reselect": "4.0.0",
+    "amplify-store": "0.1.0"
   }
 }

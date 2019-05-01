@@ -658,6 +658,10 @@ abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
 
+amplify-store@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/amplify-store/-/amplify-store-0.1.0.tgz#355d99e4cb9e723c63a045bb76833956cffdc847"
+
 ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"

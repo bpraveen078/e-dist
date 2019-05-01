@@ -7,7 +7,7 @@ function* appLogin(action) {
   debugger;
 
   try {
-    const response = yield call(login, action.loginData, "api/account/login");
+    const response = yield call(login, action.model, "token");
     yield put({
       type: actions.LOGIN_SUCCESS,
       data: response.data

@@ -49,7 +49,6 @@ class Login extends React.Component<ILoginPageProps, ILoginPageState> {
     });
   };
   public render() {
-    debugger;
     const { login } = this.state;
     const { loginSubmit } = this.props;
     return (

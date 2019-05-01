@@ -6,12 +6,10 @@ const initialState = Immutable.fromJS({
 });
 
 const startLoading = (state, action) => {
-  // return { ...state, loading: true };
   return state.set("loading", true);
 };
 
 const loginResponse = (state, action) => {
-  // return { ...state, loading: false };
   return state.set("loading", false);
 };
 
@@ -21,30 +19,7 @@ const handlers = {
 };
 
 export default (state = initialState, action) => {
-  debugger;
   const handler = handlers[action.type];
   if (typeof handler === "undefined") return state;
   return handler(state, action);
 };
-
-// import * as actions from "./actions";
-
-// export function LoginReducer(state = {}, action) {
-//   debugger;
-//   switch (action.type) {
-//     case actions.LOGIN_REQUEST:
-//       return {
-//         ...state,
-//         loading: true
-//       };
-//     case actions.LOGIN_SUCCESS:
-//       return {
-//         ...state,
-//         loading: false,
-//         tasks: action.result
-//       };
-
-//     default:
-//       return state;
-//   }
-// }
