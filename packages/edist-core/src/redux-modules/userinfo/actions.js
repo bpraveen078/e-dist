@@ -1,6 +1,7 @@
 export const ERROR = "ERROR";
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGOUT = "LOGOUT";
 export const FORGOT_REQUEST = "FORGOT_REQUEST";
 export const FORGOT_SUCCESS = "FORGOT_SUCCESS";
 export const OTP_REQUEST = "OTP_REQUEST";
