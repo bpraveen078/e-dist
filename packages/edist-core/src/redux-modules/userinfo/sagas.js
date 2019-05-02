@@ -9,7 +9,7 @@ function* appLogin(action) {
     const response = yield call(login, action.model, "token");
     yield put({ type: actions.LOGIN_SUCCESS, data: response.data });
     debugger;
-    // history.push("dashboard");
+    history.push("dashboard");
   } catch (error) {
     yield put({ type: actions.ERROR, error });
   }

@@ -42,7 +42,14 @@ const initialState = {
 //   return newState;
 // };
 const loginResponse = (state, action) => {
+  state = state.isLoggedin = true;
   return state;
+  // return { ...state, isLoggedin: true };
+};
+const startLoading = (state, action) => {
+  state = state.isLoggedin = false;
+  return state;
+  // return { ...state, isLoggedin: false };
 };
 // const logout = (state, action) => {
 //   deleteUserSession();
@@ -54,7 +61,7 @@ const loginResponse = (state, action) => {
 // };
 
 const handlers = {
-  // [actions.LOGIN_REQUEST]: startLoading,
+  [actions.LOGIN_REQUEST]: startLoading,
   [actions.LOGIN_SUCCESS]: loginResponse
   // [actions.LOGOUT]: logout
 };

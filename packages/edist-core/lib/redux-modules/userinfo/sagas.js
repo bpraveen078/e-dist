@@ -10,7 +10,8 @@ function* appLogin(action) {
       type: actions.LOGIN_SUCCESS,
       data: response.data
     });
-    debugger; // history.push("dashboard");
+    debugger;
+    history.push("dashboard");
   } catch (error) {
     yield put({
       type: actions.ERROR,
