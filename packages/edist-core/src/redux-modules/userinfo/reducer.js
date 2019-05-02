@@ -7,9 +7,10 @@ import {
 const initialState = Immutable.fromJS({
   loading: false,
   data: {},
-  isLoggedin: checkUserSession(),
+  isLoggedin: false,
   isMenuOpen: false,
-  isMenuClose: false
+  isMenuClose: false,
+  date: new Date()
 });
 
 const startLoading = (state, action) => {
@@ -21,7 +22,10 @@ const startLoading = (state, action) => {
 };
 
 const loginResponse = (state, action) => {
-  state.set("isLoggedin", checkUserSession());
+  const isLoggedin = checkUserSession();
+  debugger;
+  state.set("isLoggedin", isLoggedin);
+  state.set("date", new Date());
   state.set("isMenuOpen", true);
   state.set("isMenuClose", false);
   state.set("loading", false);
@@ -44,6 +48,7 @@ const handlers = {
 };
 
 export default (state = initialState, action) => {
+  debugger;
   const handler = handlers[action.type];
   if (typeof handler === "undefined") return state;
   return handler(state, action);

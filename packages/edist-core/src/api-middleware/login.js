@@ -19,13 +19,12 @@ const login = async (model, url) => {
   axios.defaults.headers.post["Content-Type"] = "application/json";
   const response = await axios.post(url, data);
 
-  if (!response.ok) {
+  if (response.status !== 200) {
     return { error: { code: response.status } };
   }
 
-  debugger;
   setStorage("id_token", response.data.id_token);
-  return { data: json };
+  return { data: response.data };
 };
 
 export { login };

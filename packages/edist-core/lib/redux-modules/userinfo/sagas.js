@@ -1,4 +1,5 @@
 import { takeEvery, call, put, cancel, all } from "redux-saga/effects";
+import history from "../../global/history";
 import { login } from "../../api-middleware/login";
 import * as actions from "./actions";
 
@@ -9,6 +10,7 @@ function* appLogin(action) {
       type: actions.LOGIN_SUCCESS,
       data: response.data
     });
+    debugger; // history.push("dashboard");
   } catch (error) {
     yield put({
       type: actions.ERROR,

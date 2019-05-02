@@ -10,6 +10,8 @@ import Login from "./pages/common/login.page";
 import Dashboard from "./pages/common/dashboard.page";
 // @ts-ignore
 import { getStorage } from "edist-core/lib/helpers/storage.helper";
+// @ts-ignore
+import history from "edist-core/lib/global/history";
 import { Route, Router } from "react-router";
 import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -26,7 +28,6 @@ import { mapDispatchToProps, mapStateToProps } from "./AppContainer";
 
 import classNames from "classnames";
 
-import { createBrowserHistory } from "history";
 import {
   List,
   IconButton,
@@ -36,8 +37,6 @@ import {
   ListItemText,
   createStyles
 } from "@material-ui/core";
-
-export const history = createBrowserHistory();
 
 const drawerWidth = 240;
 const styles = (theme: IThemeModel) =>
@@ -138,9 +137,13 @@ class App extends React.Component<IAppProps, IAppState> {
     // this.setState({ open: false });
     this.props.drawerOpen(false);
   };
+  public getDerivedStateFromProps(props: any) {
+    const ppp = this.props;
+    debugger;
+  }
   public render() {
     const { classes, theme, isLoggedin, isMenuOpen } = this.props;
-
+    debugger;
     return (
       <div className="App">
         {/* <PropsContext.Provider value={makeAppContext}> */}

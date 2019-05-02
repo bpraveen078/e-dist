@@ -3,6 +3,7 @@ import * as actions from "edist-core/lib/redux-modules/userinfo/actions";
 import * as React from "react";
 
 export const mapStateToProps = (state: any) => {
+  debugger;
   return { state };
 };
 export const mapDispatchToProps = (dispatch: any) => ({
