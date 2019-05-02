@@ -51,6 +51,7 @@ class Login extends React.Component<ILoginPageProps, ILoginPageState> {
   public render() {
     const { login } = this.state;
     const { loginSubmit } = this.props;
+    debugger;
     return (
       <div style={{ marginTop: "155px" }}>
         Login

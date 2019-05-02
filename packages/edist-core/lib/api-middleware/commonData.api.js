@@ -1,5 +1,4 @@
 import { BASE_URL } from "../environment";
-
 const get = async (query, url) => {
   let body = {
     method: "GET",
@@ -10,12 +9,9 @@ const get = async (query, url) => {
     body: JSON.stringify(model)
   };
   const response = await fetch(`${BASE_URL}${url}?${query}`, body);
-
   if (response.ok) {
     const json = await response.json();
-    return {
-      data: json
-    };
+    return { data: json };
   } else {
     throw new Error("Error");
   }
@@ -33,12 +29,9 @@ const post = async (model, url) => {
   };
   const response = await fetch(`${BASE_URL}${url}`, body);
   debugger;
-
   if (response.ok) {
     const json = await response.json();
-    return {
-      data: json
-    };
+    return { data: json };
   } else {
     throw new Error("Error");
   }
